@@ -1,18 +1,36 @@
-package org.example;
-
+package Streams;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) {
-        ArrayList<Person> persons = new ArrayList<>();
-        persons.add(new Person(101, "Rahul", 50000.0, 30));
-        persons.add(new Person(202, "Tarun", 60000.0, 28));
-        persons.add(new Person(303, "Bhagat", 55000.0, 35));
-        persons.add(new Person(404, "Alice", 45000.0, 32));
-        Collections.sort(persons);
-        for (int i = 0; i < persons.size(); i++) {
-            System.out.println(persons.get(i));
-        }
+    public static void main(String[] args){
+        List<Integer> list=new ArrayList<>();
+        list.add(11);
+        list.add(12);
+        list.add(13);
+        list.add(14);
+        list.add(15);
+        list.add(16);
+        list.add(17);
+        list.add(11);
+        list.add(15);
+        Iterator<Integer> iterator = list.iterator();
+        List<Integer> evenNumbers = list.stream().
+                filter(number -> number % 2 == 0).collect(Collectors.toList());
+        // Collect remaining even numbers into a new list
+        System.out.println(evenNumbers);
+
+        // Using Streams API to remove duplicates
+        List<Integer> distinctNumbers = list.stream().distinct() // Remove duplicates
+                .collect(Collectors.toList());     // Collect distinct numbers into a new list
+
+        System.out.println(distinctNumbers);
+
     }
+
+
+
+
 }
